@@ -1,0 +1,52 @@
+body {
+    background-color: #18171B;
+}
+
+.dumps {
+    padding-top: 8%;
+}
+
+h1 {
+    color: #e2e2e2;
+}
+
+.sf-dump {
+    border: white solid 1px;
+    border-radius: 3px;
+}
+
+header {
+
+}
+
+.button {
+    margin: 20px;
+    padding: 10px 50px;
+    font-size: 1.4em;
+    font-weight: 600;
+    background-color: #272727;
+    color: #d6d6d6;
+    border: 0;
+}
+
+.button:hover {
+    background-color: #383838;
+    color: white;
+}
+
+button.button.float {
+}
+
+.button:active {
+    background-color: white;
+    color: black;
+}
+
+.button:focus {
+    outline: 0;
+    border: 1px #a0a0a0 solid;
+}
+
+.float {
+    float: left;
+}
