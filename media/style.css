@@ -2,10 +2,6 @@ body {
     background-color: #18171B;
 }
 
-.dumps {
-    padding-top: 8%;
-}
-
 h1 {
     color: #e2e2e2;
 }
@@ -16,7 +12,7 @@ h1 {
 }
 
 header {
-
+    height: 80px;
 }
 
 .button {

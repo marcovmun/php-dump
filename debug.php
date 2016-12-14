@@ -1,8 +1,8 @@
 <?php
 $directory = 'debug';
 $scanned_directory = array_diff(scandir($directory), array('..', '.'));
-foreach ($scanned_directory as $dir) {
-    $handle = fopen($directory . DIRECTORY_SEPARATOR .  $dir, 'r');
+foreach ($scanned_directory as $file) {
+    $handle = fopen($directory . DIRECTORY_SEPARATOR .  $file, 'r');
     if($handle === false) {
         continue;
     }
@@ -11,6 +11,6 @@ foreach ($scanned_directory as $dir) {
     }
 
     fclose($handle);
-    unlink($directory . DIRECTORY_SEPARATOR .  $dir);
+    unlink($directory . DIRECTORY_SEPARATOR . $file);
 }
 ?>

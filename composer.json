@@ -1,5 +1,21 @@
 {
-    "require": {
-        "symfony/var-dumper": "^3.2"
+  "name": "marcovmun/php-dump",
+  "type": "application",
+  "description": "Dump symfony dump in a separate webpage",
+  "keywords": ["dump", "debug"],
+  "homepage": "https://github.com/marcovmun/php-dump",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marco van Munster",
+      "email": "marcovmun@outlook.com"
     }
+  ],
+  "require": {
+    "symfony/var-dumper": "^3.2"
+  },
+  "autoload": {
+    "files": [ "functions/load_dumper.php" ],
+    "psr-4": { "marcovmun\\php-dump\\": "src" }
+  }
 }
