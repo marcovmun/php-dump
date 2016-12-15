@@ -1,3 +1,7 @@
+* {
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
 body {
     background-color: #18171B;
 }
@@ -6,31 +10,44 @@ h1 {
     color: #e2e2e2;
 }
 
+.dumps {
+    margin-top: 90px;
+}
+
 .sf-dump {
     border: white solid 1px;
     border-radius: 3px;
 }
 
 header {
-    height: 80px;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    background-color: #353535;
+    z-index: 999999;
+    min-width: 580px;
+    width: 50%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transform: translate(-50%, 0);
+    padding: 0 10px;
 }
 
 .button {
-    margin: 20px;
-    padding: 10px 50px;
+    margin: 2%;
+    padding: 10px 0;
     font-size: 1.4em;
     font-weight: 600;
     background-color: #272727;
     color: #d6d6d6;
     border: 0;
+    width: 29.3%;
 }
 
 .button:hover {
     background-color: #383838;
     color: white;
-}
-
-button.button.float {
 }
 
 .button:active {
@@ -45,4 +62,44 @@ button.button.float {
 
 .float {
     float: left;
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    margin: 12px 20px;
+    color: white;
+}
+
+.top-left {
+    left: 0;
+}
+
+.top-right {
+    right: 0;
+}
+
+@media screen and (max-width: 600px) {
+
+    header {
+        width: 100%;
+        transform: initial;
+        left: 0;
+        min-width: initial;
+        padding: 0;
+    }
+
+    .float {
+        float: none;
+    }
+
+    .button {
+        width: 90%;
+        margin: 10px 4%;
+    }
+
+    .dumps {
+        margin-top: 210px;
+    }
+
 }
