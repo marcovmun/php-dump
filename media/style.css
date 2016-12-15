@@ -43,21 +43,26 @@ header {
     color: #d6d6d6;
     border: 0;
     width: 29.3%;
+    outline: 1px #d6d6d6 solid;
 }
 
 .button:hover {
     background-color: #383838;
     color: white;
+    outline: 1px white solid;
+}
+
+button:hover .svg {
+    fill: white;
 }
 
 .button:active {
-    background-color: white;
-    color: black;
+    background-color: #d6d6d6;
+    color: #272727;
 }
 
-.button:focus {
-    outline: 0;
-    border: 1px #a0a0a0 solid;
+button:active .svg {
+    fill: #272727;
 }
 
 .float {
@@ -79,14 +84,23 @@ header {
     right: 0;
 }
 
+.svg {
+    height: 40px;
+    width: 40px;
+    float: left;
+    padding: 10px 0 0 10px;
+    fill: #d6d6d6;
+}
+
 @media screen and (max-width: 600px) {
 
     header {
-        width: 100%;
+        width: 94%;
         transform: initial;
         left: 0;
         min-width: initial;
-        padding: 0;
+        padding: 0% 3%;
+        text-align: center;
     }
 
     .float {
@@ -94,12 +108,22 @@ header {
     }
 
     .button {
-        width: 90%;
-        margin: 10px 4%;
+        padding: 10px;
+        width: auto;
+    }
+
+    .button p {
+        display: none;
     }
 
     .dumps {
-        margin-top: 210px;
+        margin-top: 40px;
+    }
+
+    .svg {
+        padding: 0;
+        height: 40px;
+        width: 40px;
     }
 
 }

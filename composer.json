@@ -12,7 +12,8 @@
     }
   ],
   "require": {
-    "symfony/var-dumper": "^3.2"
+    "symfony/var-dumper": "^3.2",
+    "iconic/open-iconic": "1.1.*"
   },
   "autoload": {
     "files": [ "functions/load_dumper.php" ],

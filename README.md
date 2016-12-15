@@ -27,5 +27,7 @@ $  echo 'auto_prepend_file = "/location/of/this/project/vendor/autoload.php"' >>
 - (stop) Stop pulling for new dumps
 - (clear) Clear current page from all dumps
 
-**Example debug page:**
-![Example page](media/imagas/debug_page.PNG)
+**Example debug pages:**
+![Example page](media/image/debug_page.PNG)
+
+![Example small page](media/image/small_debug_page.PNG)
