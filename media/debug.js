@@ -20,12 +20,17 @@ $(document).ready(function(){
     }
 
     $("#start").click(function(e){
+        e.preventDefault();
+        $("#start").addClass('active');
+        $("#stop").removeClass('active');
         run_debug = true;
         read_debug_data();
     });
 
     $("#stop").click(function(e){
         e.preventDefault();
+        $("#stop").addClass('active');
+        $("#start").removeClass('active');
         run_debug = false;
     });
 

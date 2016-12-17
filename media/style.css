@@ -11,7 +11,7 @@ h1 {
 }
 
 .dumps {
-    margin-top: 90px;
+    margin-top: 100px;
 }
 
 .sf-dump {
@@ -26,42 +26,55 @@ header {
     left: 50%;
     background-color: #353535;
     z-index: 999999;
-    min-width: 580px;
-    width: 50%;
+    /* min-width: 580px; */
+    width: 260px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     transform: translate(-50%, 0);
     padding: 0 10px;
+    /* text-align: center; */
 }
 
 .button {
-    margin: 2%;
-    padding: 10px 0;
+    margin: 3%;
+    padding: 5px;
     font-size: 1.4em;
     font-weight: 600;
     background-color: #272727;
     color: #d6d6d6;
     border: 0;
-    width: 29.3%;
+    width: auto;
     outline: 1px #d6d6d6 solid;
 }
 
+.button#clear {
+    background-color: #4a0000;
+}
+
+button.active {
+    background-color: #010035;
+}
+
 .button:hover {
-    background-color: #383838;
+    background-color: #010035;
     color: white;
     outline: 1px white solid;
 }
 
-button:hover .svg {
+.button#clear:hover {
+    background-color: #8c0000;
+}
+
+.button:hover .svg {
     fill: white;
 }
 
-.button:active {
+.button:active, .button#clear:active {
     background-color: #d6d6d6;
     color: #272727;
 }
 
-button:active .svg {
+.button:active .svg {
     fill: #272727;
 }
 
@@ -88,9 +101,13 @@ button:active .svg {
     height: 40px;
     width: 40px;
     float: left;
-    padding: 10px 0 0 10px;
+    padding: 10px;
     fill: #d6d6d6;
 }
+
+    .button p {
+        display: none;
+    }
 
 @media screen and (max-width: 600px) {
 
@@ -117,7 +134,7 @@ button:active .svg {
     }
 
     .dumps {
-        margin-top: 40px;
+        margin-top: 90px;
     }
 
     .svg {
