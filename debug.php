@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 $directory = 'debug';
 $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 foreach ($scanned_directory as $file) {
@@ -9,8 +10,6 @@ foreach ($scanned_directory as $file) {
     while (!feof($handle)) {
         echo fgets($handle);
     }
-
     fclose($handle);
     unlink($directory . DIRECTORY_SEPARATOR . $file);
 }
-?>

@@ -34,5 +34,4 @@ goto cleanup
 
 :cleanup
 if "%OS%"=="Windows_NT" @endlocal
-
 rem pause

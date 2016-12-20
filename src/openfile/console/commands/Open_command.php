@@ -32,7 +32,7 @@ class Open_command extends Command
     /**
      * @return string
      */
-    public function get_file() : string
+    public function get_file(): string
     {
         return $this->file;
     }
@@ -96,7 +96,7 @@ class Open_command extends Command
             ->addOption('file', 'f', InputOption::VALUE_REQUIRED, 'Which file do you want to open?')
             ->addOption('line', 'l', InputOption::VALUE_REQUIRED, 'Which line number should we go?')
             ->addOption('editor', 'e', InputOption::VALUE_REQUIRED, 'In which editor should the file be opened.' .
-    'If not set the editor is used that is defined in config.yml')
+                'If not set the editor is used that is defined in config.yml')
             ->setHelp(sprintf(
                 '%sOpen file%s',
                 PHP_EOL,
@@ -116,7 +116,7 @@ class Open_command extends Command
     /**
      * Initializes the application.
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
@@ -139,6 +139,5 @@ class Open_command extends Command
 
         $output->writeln('<info>Succes</info>');
     }
-
 
 }
