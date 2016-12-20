@@ -6,6 +6,8 @@
  * Time: 22:18 PM
  */
 
+define('ROOT', __DIR__ . '/../');
+
 use marcovmun\phpdump\Html_dumper;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\VarDumper;

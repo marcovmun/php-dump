@@ -1,1 +1,9 @@
 editor: 'phpstorm'
+executable: 'C:\Program Files (x86)\JetBrains\PhpStorm 2016.3.1\bin\phpstorm.exe'
+pathmapping:
+ -
+  host: 'C:\repositories'
+  remote: 'var/repositories'
+ -
+  host: 'C:\repositories'
+  remote: 'var/repositories'

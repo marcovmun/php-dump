@@ -10,6 +10,4 @@ if (!$autoloader()) {
     );
 }
 
-define('ROOT', __DIR__ . '/../');
-
 return new \marcovmun\openfile\console\Open_file();
