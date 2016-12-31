@@ -12,12 +12,21 @@ use marcovmun\phpdump\Html_dumper;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\VarDumper;
 
-VarDumper::setHandler(function ($var) {
-    $cloner = new VarCloner();
+/**
+ * @return string
+ */
+function get_new_file(): string
+{
     $time = time() . microtime();
     $location = substr(__DIR__, 0, -strlen('app'));
     $debug_map = $location . 'debug' . DIRECTORY_SEPARATOR;
-    $dumper = new Html_dumper();
-    $dumper->setOutput($debug_map . $time . '.html');
+
+    return $debug_map . $time . '.html';
+}
+
+VarDumper::setHandler(function ($var) {
+    $cloner = new VarCloner();
+    $dumper = Html_dumper::instance();
+    $dumper->setOutput(get_new_file());
     $dumper->dump($cloner->cloneVar($var));
 });

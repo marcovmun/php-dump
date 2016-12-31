@@ -11,5 +11,7 @@ foreach ($scanned_directory as $file) {
         echo fgets($handle);
     }
     fclose($handle);
-    unlink($directory . DIRECTORY_SEPARATOR . $file);
+    do {
+        unlink($directory . DIRECTORY_SEPARATOR . $file);
+    } while(file_exists($directory . DIRECTORY_SEPARATOR .  $file));
 }
