@@ -2,7 +2,7 @@
 =============
 This is a application that simple dump dumps in a separate web page
 
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square)](https://php.net/)
 ## Installation
  1. Clone this project
  2. Run composer install in project map
