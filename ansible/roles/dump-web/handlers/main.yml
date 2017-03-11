@@ -1,0 +1,20 @@
+---
+- name: restart apache
+  service: name=apache2 state=restarted
+  become: true
+
+- name: restart apparmor
+  service: name=apparmor state=restarted
+  become: true
+
+- name: restart clamav-daemon
+  service: name=clamav-daemon state=restarted
+  become: true
+
+- name: restart ssh
+  service: name=ssh state=restarted
+  become: true
+
+- name: restart exim4
+  service: name=exim4 state=restarted
+  become: true

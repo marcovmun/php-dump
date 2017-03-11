@@ -1,0 +1,5 @@
+- name: set the auto_prepend_file
+  copy:
+    dest: /etc/php/7.0/cli/conf.d/30-phpdump.ini
+    content: "auto_prepend_file = \"/var/phpdump/repositories/phpdump/vendor/autoload.php\""
+  become: true

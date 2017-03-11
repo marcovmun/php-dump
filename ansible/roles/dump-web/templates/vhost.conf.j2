@@ -1,0 +1,59 @@
+#{{ ansible_managed }}
+{# -- Rewrites and other site specific settings -- #}
+{% set rewrites %}
+    <Directory {{ item.root_path }}/web/>
+        AllowOverride None
+        Require all granted
+
+        <IfModule mod_rewrite.c>
+            Options -MultiViews
+            RewriteEngine On
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^$ index.html [L]
+        </IfModule>
+        </Directory>
+
+        <Directory {{ item.root_path }}/web/bundles>
+        <IfModule mod_rewrite.c>
+            RewriteEngine Off
+        </IfModule>
+    </Directory>
+{% endset %}
+
+{# -- Standard vhost content -- #}
+{% set vhost %}
+    ServerName {{ item.site ~ '.' ~ base_domain }}
+
+    DocumentRoot {{ item.root_path }}/web
+    CustomLog /var/log/apache2/{{ item.site }}_access.log combined
+    ErrorLog /var/log/apache2/{{ item.site }}_errors.log
+{% endset %}
+
+{# -- Main vhost blocks -- #}
+<VirtualHost *:80>
+    {{ vhost }}
+    {% if item.ssl_only | default(false)  %}
+        RewriteEngine On
+        RewriteCond %{HTTPS} =off
+        RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L,R=301]
+    {% else %}
+        {{ rewrites }}
+    {% endif %}
+
+</VirtualHost>
+
+{% if item.ssl %}
+    <VirtualHost *:443>
+        {{ vhost }}
+        {{ rewrites }}
+        SSLEngine on
+        SSLCertificateFile /etc/ssl/certs/apache-selfsigned-{{ base_domain }}.crt
+        SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned-{{ base_domain }}.key
+
+        {% if item.ssl_only | default(false)  %}
+            <ifModule mod_headers.c>
+                Header add Strict-Transport-Security "max-age=31536000"
+            </ifModule>
+        {% endif %}
+    </VirtualHost>
+{% endif %}

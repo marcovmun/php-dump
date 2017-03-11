@@ -3,7 +3,7 @@
   "type": "application",
   "description": "Dump symfony dump in a separate webpage",
   "keywords": ["dump", "debug"],
-  "homepage": "https://github.com/marcovmun/php-dump",
+  "homepage": "https://github.com/marcovmun/phpdump",
   "license": "MIT",
   "authors": [
     {

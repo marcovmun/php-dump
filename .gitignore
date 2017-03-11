@@ -1,4 +1,7 @@
-vendor/
+/vendor/
+/.vagrant/*
 .idea/
-debug/
 config.yml
+/ansible/site.retry
+/ansible/host_vars/*
+!/ansible/host_vars/hostname.yml.example

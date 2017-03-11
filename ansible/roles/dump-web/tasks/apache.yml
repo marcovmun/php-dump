@@ -1,0 +1,53 @@
+---
+- name: create a self signed SSL certificate
+  shell: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned-{{ base_domain }}.key -out /etc/ssl/certs/apache-selfsigned-{{ base_domain }}.crt -subj "/C=NL/ST=/L=Hilversum/O=Mybit/OU=/CN=*.{{ base_domain }}/emailAddress=info@mybit.nl"
+  become: true
+  args:
+    creates: /etc/ssl/private/apache-selfsigned-{{ base_domain }}.key
+  notify:
+  - restart apache
+
+- set_fact:
+    vhosts_list:
+    - { site: dump, root_path: /var/phpdump/repositories/phpdump, ssl_only: false, ssl: true }
+
+- name: create apache vhost files
+  template:
+    src: vhost.conf.j2
+    dest: /etc/apache2/sites-available/{{ item.site }}.conf
+  with_items: "{{ vhosts_list }}"
+  loop_control:
+    label: "{{ item.site }}"
+  become: true
+  notify:
+  - restart apache
+
+- name: enable apache vhost files
+  file:
+    src: /etc/apache2/sites-available/{{ item.1.site }}.conf
+    dest: /etc/apache2/sites-enabled/000-{{ item.1.site }}.conf
+    state: link
+  with_indexed_items: "{{ vhosts_list }}"
+  loop_control:
+    label: "{{ item.1.site }}"
+  become: true
+  register: vhosts_enable_result
+  notify:
+  - restart apache
+
+- name: enable apache modules
+  file:
+    src: /etc/apache2/mods-available/{{ item }}.load
+    dest: /etc/apache2/mods-enabled/{{ item }}.load
+    state: link
+  with_items:
+    - rewrite
+    - ssl
+    - headers
+  become: true
+  notify:
+  - restart apache
+
+- name: start apache2 service
+  service: name=apache2 state=started enabled=true
+  become: true

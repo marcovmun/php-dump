@@ -1,0 +1,17 @@
+---
+- name: stop processes blocking www-data changes
+  shell: "if grep '/home/www-data:/bin/bash' /etc/passwd; then killall -KILL -u www-data; $(exit 1); fi"
+  register: check_result
+  changed_when: check_result.rc == 1
+  failed_when: false
+  become: true
+
+- name: setup www-data user
+  user:
+    name: www-data
+    home: /var/www
+    shell: /usr/sbin/nologin
+    append: yes
+    state: present
+  notify: restart apache
+  become: true

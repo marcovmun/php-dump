@@ -1,0 +1,23 @@
+---
+- name: create www-data directories
+  file:
+    dest: "{{ item }}"
+    owner: www-data
+    group: www-data
+    state: directory
+  become: true
+  with_items:
+    - /var/www/
+
+- name: create www-data directories
+  file:
+    dest: "{{ item }}"
+    owner: www-data
+    group: www-data
+    mode: 0775
+    state: directory
+  become: true
+  with_items:
+    - /var/log/phpdump
+    - /var/phpdump/repositories
+    - /var/phpdump/dumpfiles

@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-$directory = 'debug';
+$directory = '/var/phpdump/dumpfiles/';
 $scanned_directory = array_diff(scandir($directory), array('..', '.'));
 foreach ($scanned_directory as $file) {
     $handle = fopen($directory . DIRECTORY_SEPARATOR .  $file, 'r');

@@ -6,7 +6,11 @@
  * Time: 22:18 PM
  */
 
-define('ROOT', __DIR__ . '/../');
+define('ROOT', __DIR__ .
+    DIRECTORY_SEPARATOR .
+    '..' .
+    DIRECTORY_SEPARATOR
+);
 
 use marcovmun\phpdump\Html_dumper;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
@@ -18,8 +22,7 @@ use Symfony\Component\VarDumper\VarDumper;
 function get_new_file(): string
 {
     $time = time() . microtime();
-    $location = substr(__DIR__, 0, -strlen('app'));
-    $debug_map = $location . 'debug' . DIRECTORY_SEPARATOR;
+    $debug_map = '/var/phpdump/dumpfiles/';
 
     return $debug_map . $time . '.html';
 }

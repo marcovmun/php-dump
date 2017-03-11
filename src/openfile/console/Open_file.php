@@ -28,7 +28,6 @@ class Open_file extends Application
         parent::__construct('Open file by Marco van Munster', $version);
 
         $config = Yaml::parse(file_get_contents(ROOT . 'config.yml'));
-
         $this->addCommands(array(
             new commands\Open_command($config),
         ));

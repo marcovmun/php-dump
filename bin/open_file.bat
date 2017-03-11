@@ -7,20 +7,17 @@ if "%OS%"=="Windows_NT" @setlocal
 
 rem %~dp0 is expanded pathname of the current script under NT
 
-set DEFAULT_HOME=%~dp0..
-
 goto init
 goto cleanup
 
 :init
-if "%HOME%" == "" set HOME=%DEFAULT_HOME%
-set DEFAULT_HOME=
+
 if "%PHP_COMMAND%" == "" goto no_phpcommand
 goto run
 goto cleanup
 
 :run
-"%PHP_COMMAND%" -d html_errors=off -qC "%HOME%\bin\open_file" %*
+"%PHP_COMMAND%" -d html_errors=off -qC "%~dp0open_file" %*
 goto cleanup
 :no_phpcommand
 rem PHP_COMMAND environment variable not found, assuming php.exe is on path.

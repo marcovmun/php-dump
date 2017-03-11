@@ -1,0 +1,7 @@
+---
+- include: packages.yml
+- include: users.yml
+- include: directory_structure.yml
+- include: apache.yml
+- include: php.yml
+- include: other.yml

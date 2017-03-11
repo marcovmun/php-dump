@@ -1,0 +1,7 @@
+---
+- name: set the correct timezone
+  shell: "if ! grep Europe/Amsterdam /etc/timezone; then timedatectl set-timezone Europe/Amsterdam; $( exit 1 ); fi;"
+  register: check_result
+  changed_when: check_result.rc == 1
+  failed_when: false
+  become: true
