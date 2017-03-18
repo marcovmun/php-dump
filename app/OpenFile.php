@@ -10,4 +10,4 @@ if (!$autoloader()) {
     );
 }
 
-return new \marcovmun\openfile\console\Open_file();
+return new \marcovmun\openfile\console\OpenFile();

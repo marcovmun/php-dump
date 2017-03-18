@@ -1,6 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: marco
  * Date: 16-Dec-16
  * Time: 22:03 PM
@@ -9,33 +8,48 @@
 namespace marcovmun\phpdump;
 
 use Symfony\Component\VarDumper\Cloner\Data;
-use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper as DefaultHtmlDumper;
 use Symfony\Component\Yaml\Yaml;
 
-class Html_dumper extends HtmlDumper
+/**
+ * Class HtmlDumper
+ * @package marcovmun\phpdump
+ */
+class HtmlDumper extends DefaultHtmlDumper
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     private $config;
 
-    protected $default_dumpPrefix = '<pre class=sf-dump id=%s data-indent-pad=\"%s\">';
+    /**
+     * @var string
+     */
+    protected $defaultDumpPrefix = '<pre class=sf-dump id=%s data-indent-pad=\"%s\">';
+
+    /**
+     * @var string|null
+     */
     protected $dumpPrefix = null;
 
-    /** @var self */
+    /** @var HtmlDumper */
     private static $instance;
 
     public static function instance()
     {
         if (self::$instance === null) {
-            self::$instance = new Html_dumper();
+            self::$instance = new HtmlDumper();
         }
+
         return self::$instance;
     }
 
     /**
-     * Html_dumper constructor.
+     * HtmlDumper constructor.
+     *
      * @param callable|resource|string $output
-     * @param null $charset
-     * @param int $flags
+     * @param null                     $charset
+     * @param int                      $flags
      */
     public function __construct($output = null, $charset = null, $flags = 0)
     {
@@ -43,19 +57,20 @@ class Html_dumper extends HtmlDumper
         parent::__construct($output, $charset, $flags);
     }
 
-    public function dump(Data $data, $output = null, array $extraDisplayOptions = array())
+    public function dump(Data $data, $output = null, array $extraDisplayOptions = [])
     {
-        $this->prepend_file_location();
+        $this->prependFileLocation();
+
         return parent::dump($data, $output, $extraDisplayOptions);
     }
 
-    private function prepend_file_location()
+    private function prependFileLocation()
     {
         $dump_location = debug_backtrace(false, 6)[5];
         $file = $dump_location['file'];
         $line_number = $dump_location['line'];
-        $file = $this->map_file_paths($file);
-        $this->dumpPrefix = $this->default_dumpPrefix .  '<h4 class="sf-dump-h4">' .
+        $file = $this->mapFilePaths($file);
+        $this->dumpPrefix = $this->defaultDumpPrefix . '<h4 class="sf-dump-h4">' .
             '<a href="openfile://open?file=' . $file . '&line=' . $line_number . '">' . $file . ':' . $line_number . '</a></h4>';
 
         $this->styles['h4'] = 'color: white; margin-top: 4px; margin-bottom: 4px;';
@@ -64,14 +79,15 @@ class Html_dumper extends HtmlDumper
 
     /**
      * @param string $path
+     *
      * @return string
      */
-    private function map_file_paths(string $path): string
+    private function mapFilePaths(string $path): string
     {
         if (!isset($this->config['pathmapping']) || !is_array($this->config['pathmapping'])) {
             return $path;
         }
-        foreach ((array) $this->config['pathmapping'] as $mapping) {
+        foreach ((array)$this->config['pathmapping'] as $mapping) {
             $remote = $mapping['remote'];
             $host = $mapping['host'];
             $length = strlen($remote);

@@ -1,6 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: marco
  * Date: 17-Dec-16
  * Time: 19:09 PM
@@ -12,7 +11,6 @@
  * stand-alone package.
  * @return boolean
  */
-
 return function () {
 
     $files = [

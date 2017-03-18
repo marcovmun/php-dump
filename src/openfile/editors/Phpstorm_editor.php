@@ -1,6 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: marco
  * Date: 17-Dec-16
  * Time: 21:58 PM
@@ -8,16 +7,23 @@
 
 namespace marcovmun\openfile\editors;
 
-
-class Phpstorm_editor extends Abstract_editor implements Editor_interface
+/**
+ * Class Phpstorm_editor
+ * @package marcovmun\openfile\editors
+ */
+class Phpstorm_editor extends AbstractEditor
 {
-    function execute(): bool
+    /**
+     * @return bool
+     * @throws \Exception
+     */
+    public function execute(): bool
     {
-        $args = '"' . $this->get_application_executable() . '" ';
-        $args .= '"' . $this->get_file() . '"';
-        if ($this->get_line_number() !== null) {
-            $args .= ' --line ' . $this->get_line_number();
-            $args .= ' "' . $this->get_file() . '"';
+        $args = '"' . $this->getApplicationExecutable() . '" ';
+        $args .= '"' . $this->getFile() . '"';
+        if ($this->getLineNumber() !== null) {
+            $args .= ' --line ' . $this->getLineNumber();
+            $args .= ' "' . $this->getFile() . '"';
         }
 
         exec($args, $output, $return);
@@ -31,4 +37,12 @@ class Phpstorm_editor extends Abstract_editor implements Editor_interface
         }
     }
 
+    /**
+     * Set on which environment you are:
+     * Windows}linux}OSX
+     */
+    public function setEnvironment()
+    {
+        throw new \Exception('Not implemented');
+    }
 }

@@ -2,6 +2,6 @@
 <?php
 
 
-$app = require __DIR__ . '/../app/Open_file.php';
+$app = require __DIR__ . '/../app/OpenFile.php';
 
 $app->run();

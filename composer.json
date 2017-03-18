@@ -17,9 +17,19 @@
     "symfony/config": "~2.8|~3.0",
     "symfony/yaml": "~2.8|~3.0"
   },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0"
+  },
   "autoload": {
-    "files": [ "app/Load_dumper.php", "app/Override_error_handler.php" ],
-    "psr-4": { "marcovmun\\": "src" }
+    "files": [ "app/LoadDumper.php", "app/OverrideErrorHandler.php" ],
+    "psr-4": {
+      "marcovmun\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "test\\marcovmun\\": "test"
+    }
   },
   "bin": ["bin/open_file"]
 }

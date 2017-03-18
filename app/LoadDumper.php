@@ -1,6 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: marco
  * Date: 14-Dec-16
  * Time: 22:18 PM
@@ -12,7 +11,7 @@ define('ROOT', __DIR__ .
     DIRECTORY_SEPARATOR
 );
 
-use marcovmun\phpdump\Html_dumper;
+use marcovmun\phpdump\HtmlDumper;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -29,7 +28,7 @@ function get_new_file(): string
 
 VarDumper::setHandler(function ($var) {
     $cloner = new VarCloner();
-    $dumper = Html_dumper::instance();
+    $dumper = HtmlDumper::instance();
     $dumper->setOutput(get_new_file());
     $dumper->dump($cloner->cloneVar($var));
 });

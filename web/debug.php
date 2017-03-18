@@ -1,10 +1,15 @@
 <?php
 error_reporting(0);
 $directory = '/var/phpdump/dumpfiles/';
-$scanned_directory = array_diff(scandir($directory), array('..', '.'));
-foreach ($scanned_directory as $file) {
-    $handle = fopen($directory . DIRECTORY_SEPARATOR .  $file, 'r');
-    if($handle === false) {
+$scannedDirectory = array_diff(scandir($directory), ['..', '.']);
+$now = time();
+foreach ($scannedDirectory as $file) {
+    $time = filemtime($directory . $file);
+    if ($time >= $now) { //only get files that are note edited any more
+        continue;
+    }
+    $handle = fopen($directory . DIRECTORY_SEPARATOR . $file, 'r');
+    if ($handle === false) {
         continue;
     }
     while (!feof($handle)) {
@@ -13,5 +18,5 @@ foreach ($scanned_directory as $file) {
     fclose($handle);
     do {
         unlink($directory . DIRECTORY_SEPARATOR . $file);
-    } while(file_exists($directory . DIRECTORY_SEPARATOR .  $file));
+    } while (file_exists($directory . DIRECTORY_SEPARATOR . $file));
 }

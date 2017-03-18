@@ -17,23 +17,14 @@
     - composer
     - zip
     - unzip
-
-#- name: install php packages
-#  apt:
-#    name: "{{ item }}"
-#    state: latest
-#  become: true
-#  with_items:
-#    - php-curl
-#    - php-gd
-#    - php-gettext
-#    - php-mbstring
-#    - php-mcrypt
-#    - php-pear
-#    - php-phpseclib
-#    - php-sqlite3
-#    - php-ssh2
-#    - php-xml
-#    - php-intl
-#  notify:
-#  - restart apache
+- name: install php packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  become: true
+  with_items:
+    - php-dom
+    - php-json
+    - php-mbstring
+  notify:
+    - restart apache

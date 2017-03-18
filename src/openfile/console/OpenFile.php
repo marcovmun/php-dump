@@ -1,6 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: marco
  * Date: 17-Dec-16
  * Time: 19:11 PM
@@ -14,7 +13,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 
-class Open_file extends Application
+/**
+ * Class OpenFile
+ * @package marcovmun\openfile\console
+ */
+class OpenFile extends Application
 {
     /**
      * Class Constructor.
@@ -28,18 +31,18 @@ class Open_file extends Application
         parent::__construct('Open file by Marco van Munster', $version);
 
         $config = Yaml::parse(file_get_contents(ROOT . 'config.yml'));
-        $this->addCommands(array(
-            new commands\Open_command($config),
-        ));
+        $this->addCommands([
+            new commands\OpenCommand($config),
+        ]);
     }
-
 
 
     /**
      * Runs the current application.
      *
-     * @param InputInterface $input An Input instance
+     * @param InputInterface  $input  An Input instance
      * @param OutputInterface $output An Output instance
+     *
      * @return integer 0 if everything went fine, or an error code
      */
     public function doRun(InputInterface $input, OutputInterface $output)

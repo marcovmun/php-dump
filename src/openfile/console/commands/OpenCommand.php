@@ -1,6 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: marco
  * Date: 17-Dec-16
  * Time: 20:32 PM
@@ -8,14 +7,18 @@
 
 namespace marcovmun\openfile\console\commands;
 
-use marcovmun\openfile\editors\Editor_interface;
+use marcovmun\openfile\editors\EditorInterface;
 use marcovmun\openfile\editors\Phpstorm_editor;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Open_command extends Command
+/**
+ * Class OpenCommand
+ * @package marcovmun\openfile\console\commands
+ */
+class OpenCommand extends Command
 {
     /** @var string */
     protected $file;
@@ -26,13 +29,13 @@ class Open_command extends Command
     /** @var string[] */
     protected $config;
 
-    /** @var Editor_interface */
+    /** @var EditorInterface */
     protected $editor;
 
     /**
      * @return string
      */
-    public function get_file(): string
+    public function getFile(): string
     {
         return $this->file;
     }
@@ -40,7 +43,7 @@ class Open_command extends Command
     /**
      * @return string
      */
-    public function get_line(): string
+    public function getLine(): string
     {
         return $this->line;
     }
@@ -48,7 +51,7 @@ class Open_command extends Command
     /**
      * @return \string[]
      */
-    public function get_config(): array
+    public function getConfig(): array
     {
         return $this->config;
     }
@@ -56,7 +59,7 @@ class Open_command extends Command
     /**
      * @param string $file
      */
-    protected function set_file(string $file)
+    protected function setFile(string $file)
     {
         if ($file === null) {
             throw new \InvalidArgumentException('The file Option is required');
@@ -67,7 +70,7 @@ class Open_command extends Command
     /**
      * @param string $line
      */
-    protected function set_line(string $line)
+    protected function setLine(string $line)
     {
         $this->line = $line;
     }
@@ -75,14 +78,14 @@ class Open_command extends Command
     /**
      * @param \string[] $config
      */
-    protected function set_config(array $config)
+    protected function setConfig(array $config)
     {
         $this->config = $config;
     }
 
     public function __construct(array $config)
     {
-        $this->set_config($config);
+        $this->setConfig($config);
         parent::__construct(null);
     }
 
@@ -108,7 +111,7 @@ class Open_command extends Command
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         // get the migration path from the config
-        $this->set_file($input->getOption('file'));
+        $this->setFile($input->getOption('file'));
         $this->line = $input->getOption('line');
         parent::initialize($input, $output);
     }
@@ -124,16 +127,16 @@ class Open_command extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        switch ($this->get_config()['editor']) {
+        switch ($this->getConfig()['editor']) {
             case 'phpstorm':
                 $editor = new Phpstorm_editor();
                 break;
             default:
                 throw new \InvalidArgumentException('Editor no valid');
         }
-        $editor->set_file($this->file);
-        $editor->set_line_number($this->get_line());
-        $editor->set_application_executable($this->config['executable']);
+        $editor->setFile($this->file);
+        $editor->setLineNumber($this->getLine());
+        $editor->setApplicationExecutable($this->config['executable']);
 
         $editor->execute();
 
